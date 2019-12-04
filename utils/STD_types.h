@@ -23,7 +23,8 @@ typedef double              float64;
 typedef enum
 {
     STD_low=0,
-    STD_high=!STD_low
+    STD_high=!STD_low,
+    STD_error = 3
 }Std_levelType;
 
 typedef enum

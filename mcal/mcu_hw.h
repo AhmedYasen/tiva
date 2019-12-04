@@ -11,6 +11,22 @@
 #include "../utils/STD_Types.h"
 #include "../utils/Bit_Math.h"
 
+/******************************************************************/
+/******************** INTERRUPT REGs ******************************/
+/******************************************************************/
+
+
+#define CORE_PERIPHERALS_BaseAddr       0xE000E000
+
+#define HWREG32(adress)                 (*((volatile uint32 *)(adress)))
+
+#define APINT                           HWREG32(CORE_PERIPHERALS_BaseAddr+0xD0C)
+
+#define INTERRUPT_ENABLE_REG(offest)    (((volatile uint32 *)(CORE_PERIPHERALS_BaseAddr+0x100))+offest)
+#define INTERRUPT_PRI_REG(offest)       (((volatile uint32 *)(CORE_PERIPHERALS_BaseAddr+0x400))+offest)
+
+
+
 /*===========================================================*
  * NVIC REGISTERS                                            *
  *========================================================== */
@@ -56,11 +72,11 @@ typedef struct
 
 typedef struct
 {
-    bit_field_Type EN0 ;
-    bit_field_Type EN1 ;
-    bit_field_Type EN2 ;
-    bit_field_Type EN3 ;
-    bit_field_Type EN4 ;
+    uint32 EN0 ;
+    uint32 EN1 ;
+    uint32 EN2 ;
+    uint32 EN3 ;
+    uint32 EN4 ;
 }  NVIC_TagType;
 
 /*===========================================================*
@@ -118,7 +134,7 @@ typedef union
 typedef struct
 {
     uint32 GPIODATA    ;
-    /*TODO: add reserved space */
+
     uint32 GPIODIR     ;
     uint32 GPIOIS      ;
     uint32 GPIOIBE     ;

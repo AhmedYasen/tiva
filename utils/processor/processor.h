@@ -10,6 +10,10 @@
 
 #include "../Std_Types.h"
 
+#pragma SWI_ALIAS(SVCALL, 48) /* #pragma SWI_ALIAS(48) for C++ */
+void SVCALL (void);
+
+
 typedef uint8 PROCESSOR_ModeType;
 #define PROCESSOR_ModePrivilege                 (uint8)0
 #define PROCESSOR_ModeNonPrivilege              (uint8)1

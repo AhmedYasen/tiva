@@ -12,7 +12,8 @@
 
 const NVIC_CfgType NVIC_CfgArr[NVIC_NUM_OF_ENABLED_INT]={
 
-   /*TODO Configure each Enabled Interrupt */
-
-
+   /* Configure each Enabled Interrupt */
+                     {GPIOA_IRQn,Groups0_SubGroup0_E},
+                     {GPIOB_IRQn,Groups1_SubGroup0_E},
+                     {GPIOC_IRQn,Groups0_SubGroup0_E},
 };

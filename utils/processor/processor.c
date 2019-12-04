@@ -6,9 +6,13 @@
  */
 #include "processor.h"
 
+PROCESSOR_ModeType u8_SVCSwitchValue;
+
 void PROCESSOR_switchMode(PROCESSOR_ModeType Mode)
 {
     /* TODO use Svc assembly instruction to switch to handler mode*/
+    u8_SVCSwitchValue=Mode;
+    SVCALL();
 
 }
 
@@ -17,8 +21,22 @@ void PROCESSOR_SvcHandler(void)
 {
     /*TODO use TMPL bit field in CONTROL Register to switch between
      * privilege and non-privilege modes.See page(88) */
+    switch(u8_SVCSwitchValue)
+    {
+        case PROCESSOR_ModePrivilege:
+            __asm(" MOV  R0, #1\n");
+            __asm(" MSR  CONTROL, R0\n");
+            break;
+        case PROCESSOR_ModeNonPrivilege:
+            __asm(" MOV  R0, #0\n");
+            __asm(" MSR  CONTROL, R0\n");
+            break;
+        default:
+            break;
+    }
 
 
+    return ;
 }
 
 void PROCESSOR_enableGlobalInt(void)

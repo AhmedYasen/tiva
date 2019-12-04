@@ -73,7 +73,8 @@ typedef enum
     Dio_Port_C,
     Dio_Port_D,
     Dio_Port_E,
-    Dio_Port_F
+    Dio_Port_F,
+    Dio_Port_Numbers = 8
 }Dio_PortType;
 
 

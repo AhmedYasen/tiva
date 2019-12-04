@@ -10,6 +10,7 @@
 
 #include "../../utils/Std_Types.h"
 
+
 void SysCtr_init(void);
 uint32 SysCtr_getSysClockFreq(void);
 
